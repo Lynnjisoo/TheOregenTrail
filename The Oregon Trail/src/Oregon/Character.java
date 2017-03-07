@@ -1,3 +1,4 @@
+package Oregon;
 import java.util.Scanner;
 
 public class Character {

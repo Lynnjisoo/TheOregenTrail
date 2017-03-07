@@ -1,3 +1,4 @@
+package Oregon;
 import java.awt.Choice;
 import java.util.Scanner;
 
