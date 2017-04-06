@@ -1,11 +1,16 @@
 package Location;
 import Oregon.Store;
+
+
 public class Location {
-	String name;
-	
-	public Location (String name) {
-		this.name = name;
-	}
+		String name;
+		static int currentLocation = 0;
+		static int currentDestination = 1;
+		static int travelledDistance = 0;	
+
+	public Location(String name) {
+			this.name = name;
+			 }
 	
 	public Location[] locations = {
 			new Town("Independence" , new Store(1)),
@@ -27,9 +32,28 @@ public class Location {
 			new Landmark("Columbia River Highway"), //Maybe change later 
 			new Landmark("Oregon City")
 	};
+	
+	public int findDistance(int from, int to) {
+		int[][] edges = adjacencyList[from];
+		for(int i = 0; i < edges.length; i++) {
+			if(edges[i][0] == to) {
+				return edges[i][1];
+			}
+		}
+		return - 1;
+	}
+	
+	/*public int findDistanceInEdgelist(int from, int to) {
+		for(int i = 0; i < edgeList.length; i++) {
+			if(edgeLIst[i][0] == from && edgeList[i][1] == to) {
+				return edgeList[i][2];
+			}
+		}
+		return - 1;
+	}*/
 			
 	
-	public static int[][][] adjecencyList = 
+	public static int[][][] adjacencyList = 
 		{
 				/* 0 */ { {1, 102} },
 				/* 1 */ { {2, 83} },

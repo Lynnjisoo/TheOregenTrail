@@ -1,7 +1,7 @@
 package Oregon;
-		import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class CurrentDate {
@@ -48,33 +48,31 @@ public class CurrentDate {
 	public static Date setupCurrentDate() {
 		long[] options = {unix_march, unix_april, unix_may, unix_june, unix_july};
 		//1. Output options
-		
 		listDateOptions(options);
 		//2. Get/Validate user input
 		int response = getUserDepartureMonth(options);
 		//3. Setup and return the Date object 
-
 		return new Date(options[response]);
 	}
 	
 	private static int getUserDepartureMonth(long[] options) {
 		Scanner input = new Scanner(System.in);
+		
 		while (true) {
 			if(input.hasNextInt()) {
 			int choice = input.nextInt();
 				if((choice < 1 || choice > options.length)) {
-					System.out.println("Please insert a number");
+					System.out.println("Please insert a valid option!");
 					continue;
 				}
 				return choice - 1;
 			}else{
-				System.out.println("Please enter a number. ");
+				System.out.println("Please enter a number! ");
 				input.nextLine();
 				}
-			
 		}
-		
-		}
+	}
+
 	public static void listDateOptions(long[] unix_timestamps) {
 		//turning these options into actual dates
 		SimpleDateFormat df = new SimpleDateFormat("MMMM");
@@ -85,7 +83,7 @@ public class CurrentDate {
 			
 		}
 		//Output
-		System.out.println("When would you want to embark your journey?");
+		System.out.println("When would you like to embark on your journey?");
 		for(int i = 0; i < unix_timestamps.length; i++) {
 			System.out.printf("%d. %-7s%n", i + 1, df.format(dates[i]));
 		}
@@ -101,5 +99,11 @@ public class CurrentDate {
 			cDate = new CurrentDate(date);
 		}
 		return cDate;
+	}
+	
+	public int getDayInYear() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal.get(Calendar.DAY_OF_YEAR);
 	}
 }
